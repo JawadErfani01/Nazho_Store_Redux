@@ -23,6 +23,33 @@ export const getData = createAsyncThunk("/getData", async (thankApi) => {
   }
 })
 
+export const getCategory = createAsyncThunk("/getCategory", async (category, thankApi) => {
+
+  try {
+    if (category === 'All') {
+      const response = await axios
+        .get(`https://fakestoreapi.com/products`)
+        .then((res) => res.data)
+      return response
+    } else {
+      const response = await axios
+        .get(`https://fakestoreapi.com/products/category/${category}`)
+        .then((res) => res.data)
+      return response
+    }
+
+  } catch (err) {
+    if (!err.response) {
+
+
+      throw err
+
+    }
+    return thankApi.rejectWithValue(err.response.data)
+  }
+})
+
+
 export const storeSlice = createSlice({
   name: "store",
   initialState,
@@ -30,7 +57,7 @@ export const storeSlice = createSlice({
     newList: (state, action) => {
       state.list = action.payload
     },
-  
+
   },
   extraReducers: (builder) => {
     builder
@@ -46,6 +73,19 @@ export const storeSlice = createSlice({
         state.error = true
         state.loading = false
       })
+      .addCase(getCategory.pending, (state) => {
+        state.loading = true
+
+      })
+      .addCase(getCategory.fulfilled, (state, action) => {
+        state.list = action.payload
+        state.loading = false
+      })
+      .addCase(getCategory.rejected, (state, action) => {
+        state.message = action.payload
+        state.error = true
+        state.loading = false
+      })
   },
 })
 
@@ -54,6 +94,7 @@ export const {
   decrementPrice,
   newList,
   incrementNOrder,
+
 } = storeSlice.actions
 
 export default storeSlice.reducer
