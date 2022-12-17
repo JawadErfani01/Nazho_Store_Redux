@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
+import { storeService } from "./storeService"
+
 const initialState = {
   list: [],
   number: 0,
@@ -11,9 +12,7 @@ const initialState = {
 
 export const getData = createAsyncThunk("/getData", async (thankApi) => {
   try {
-    const response = await axios
-      .get("https://fakestoreapi.com/products")
-      .then((res) => res.data)
+    const response=storeService.getProducts()
     return response
   } catch (err) {
     if (!err.response) {
@@ -27,14 +26,10 @@ export const getCategory = createAsyncThunk("/getCategory", async (category, tha
 
   try {
     if (category === 'All') {
-      const response = await axios
-        .get(`https://fakestoreapi.com/products`)
-        .then((res) => res.data)
+      const response = storeService.getProducts()
       return response
     } else {
-      const response = await axios
-        .get(`https://fakestoreapi.com/products/category/${category}`)
-        .then((res) => res.data)
+      const response = storeService.getCategory(category)
       return response
     }
 

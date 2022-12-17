@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-import { addToCart, getTotalPrice } from '../Feuture/reducers/cartSlice'
+import { addToCart, getTotalPrice } from '../Feuture/reducers/cartReducer/cartSlice'
 
 const Product = ({ item }) => {
   const { title, price, image, rating } = item

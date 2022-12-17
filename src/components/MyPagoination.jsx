@@ -3,7 +3,7 @@ import {
   handleBack,
   handleNext,
   handlePageinate,
-} from '../Feuture/reducers/paginationSlice'
+} from '../Feuture/reducers/paginationReducer/paginationSlice'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 const MyPagoination = ({ handelSearch }) => {
   const dispatch = useDispatch()

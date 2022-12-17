@@ -1,6 +1,6 @@
 import Switch from "react-switch"
 import { useSelector, useDispatch } from "react-redux"
-import { changeMony } from "../Feuture/reducers/cartSlice"
+import { changeMony } from "../Feuture/reducers/cartReducer/cartSlice"
 const SwitchBtn = () => {
   const { change, total } = useSelector((state) => state.cart)
 

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { searchList } from "../Feuture/reducers/storeSlice"
+import { searchList } from "../Feuture/reducers/storeReducer/storeSlice"
 import { useEffect, useState } from "react"
 const Search = () => {
   const dispatch = useDispatch()

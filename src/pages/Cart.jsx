@@ -4,7 +4,7 @@ import BtnBack from '../components/BtnBack'
 import { IoAdd } from 'react-icons/io5'
 import { GrFormSubtract } from 'react-icons/gr'
 import { toast } from 'react-toastify'
-import { decrement, deleteItem, increment } from '../Feuture/reducers/cartSlice'
+import { decrement, deleteItem, increment } from '../Feuture/reducers/cartReducer/cartSlice'
 import SwitchBtn from '../components/SwitchBtn'
 
 const Cart = () => {

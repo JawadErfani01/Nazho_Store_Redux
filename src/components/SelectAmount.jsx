@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { changeDispalyData } from '../Feuture/reducers/paginationSlice'
+import { changeDispalyData } from '../Feuture/reducers/paginationReducer/paginationSlice'
 
 const SelectAmount = () => {
   const dispatch = useDispatch()
