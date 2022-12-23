@@ -8,7 +8,7 @@ import MyPagoination from './MyPagoination'
 import SelectAmount from './SelectAmount'
 import SelectCategory from './SelectCategory'
 import { FaSearch } from 'react-icons/fa'
-
+import { products } from '../data/products'
 import { useGetAllProductsQuery } from '../Feuture/reducers/storeReducer/apiSlice'
 function Products() {
   const {
@@ -19,21 +19,19 @@ function Products() {
   } = useGetAllProductsQuery()
 
   const [searchProduct, setsearchProduct] = useState('')
+  const [data] = useState(products || allProductsData)
   const { currentPage, dataPerPage } = useSelector((state) => state.pagination)
   const indexOfLastCart = currentPage * dataPerPage
   const indexOfFirstCart = indexOfLastCart - dataPerPage
-
+  // if you have internet connection use allProductsData instad of data in handelSearch method
   const handelSearch =
     !isLoading &&
-    allProductsData.filter((item) =>
-      item.title.toLowerCase().includes(searchProduct)
-    )
-
+    data.filter((item) => item.title.toLowerCase().includes(searchProduct))
 
   const newList =
     !isLoading && handelSearch.slice(indexOfFirstCart, indexOfLastCart)
 
-  if (error) {
+  if (error && data.length < 0) {
     toast.error(message)
   }
 
@@ -42,7 +40,7 @@ function Products() {
       <h1 className='welcomeText p-5 pb-3  text-center'>
         Welcome to Nazho Store
       </h1>
-
+      <p className='text-red-500' >(( Redux State Manager ))</p>
       <div className='text-center my-3  shadow md:flex w-[80%] m-auto md:w-[100%] md:justify-around items-center p-3 '>
         <form className='my-3 md:w-[25%]  relative'>
           <input
@@ -57,7 +55,7 @@ function Products() {
           </span>
         </form>
         <div className='flex md:w-[50%]  justify-around items-center '>
-          <SelectCategory/>
+          <SelectCategory />
           <SelectAmount />
         </div>
         <SwitchBtn />

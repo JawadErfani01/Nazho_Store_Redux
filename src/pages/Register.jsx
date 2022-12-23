@@ -6,10 +6,10 @@ import { useDispatch } from 'react-redux'
 import { handelLogin } from '../Feuture/reducers/userReducer/userSlice'
 
 const Register = () => {
-  const dispatch=useDispatch()
-    const navigate=useNavigate()
-  const [data, setdata] = useState({ email: '', password: '',userName:'' })
-  const { email, password ,userName} = data
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [data, setdata] = useState({ email: '', password: '', userName: '' })
+  const { email, password, userName } = data
   const [showPassword, setshowPassword] = useState(false)
 
   const handelChange = (e) => {
@@ -20,9 +20,9 @@ const Register = () => {
   const handelSubmit = (e) => {
     e.preventDefault()
     dispatch(handelLogin(data))
-    window.localStorage.setItem("userInfo",JSON.stringify(data))
-    navigate("/")
-    setdata({email:'',password:'',userName:''})
+    window.localStorage.setItem('userInfo', JSON.stringify(data))
+    navigate('/')
+    setdata({ email: '', password: '', userName: '' })
     // handelRegister(data)
   }
 
@@ -41,7 +41,7 @@ const Register = () => {
           onChange={handelChange}
           placeholder='userName...'
           required={true}
-          type="text"
+          type='text'
           className=' my-2 border-none w-full outline-none text-black py-1.5 rounded-full px-5 shadow-lg shadow-slate-600'
         />
         <input
@@ -60,14 +60,20 @@ const Register = () => {
             onChange={handelChange}
             placeholder='password...'
             required={true}
-            type={`${showPassword?'password':'text'}`} 
+            type={`${showPassword ? 'password' : 'text'}`}
             className='  border-none w-full outline-none text-black py-1.5 rounded-full px-5 shadow-lg shadow-slate-600'
           />
           <i className='absolute bg-transparent right-6 top-[10px] text-lg'>
             {showPassword ? (
-              <FaEyeSlash className='bg-transparent cursor-pointer' onClick={() => setshowPassword(!showPassword)} />
+              <FaEyeSlash
+                className='bg-transparent cursor-pointer'
+                onClick={() => setshowPassword(!showPassword)}
+              />
             ) : (
-              <FaEye className='bg-transparent cursor-pointer' onClick={() => setshowPassword(!showPassword)} />
+              <FaEye
+                className='bg-transparent cursor-pointer'
+                onClick={() => setshowPassword(!showPassword)}
+              />
             )}
           </i>
         </div>
@@ -75,8 +81,15 @@ const Register = () => {
           type='submit'
           className=' my-3 border-none w-[50%] bg-white outline-none text-black py-1.5 rounded-full px-5 cursor-pointer shadow-lg shadow-slate-600 hover:shadow-slate-400'
         />
-        <div className='bg-transparent flex justify-end text-sm' >  <Link className='bg-transparent border-blue-400 hover:border-b-2 p-1 text-gray-400 hover:text-gray-200 '  to="/login">already have account</Link></div>
-   
+        <div className='bg-transparent flex justify-end text-sm'>
+          {' '}
+          <Link
+            className='bg-transparent border-blue-400 hover:border-b-2 p-1 text-gray-400 hover:text-gray-200 '
+            to='/login'
+          >
+            already have account
+          </Link>
+        </div>
       </form>
     </div>
   )
