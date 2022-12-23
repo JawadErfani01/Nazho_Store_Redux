@@ -1,15 +1,24 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai'
 import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
-import { useSelector } from 'react-redux/es/exports'
 import { FaShoppingCart } from 'react-icons/fa'
-
+import { handelLogout } from '../../Feuture/reducers/userReducer/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
 const Header = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [showNav, setShowNav] = useState(false)
   const { NOrder } = useSelector((state) => state.cart)
+  const { userInfo } = useSelector((state) => state.user)
+  console.log(userInfo);
   const handelNav = () => {
     setShowNav(!showNav)
+  }
+  const Logout = () => {
+    localStorage.removeItem('userInfo')
+    dispatch(handelLogout())
+    navigate('/')
   }
   return (
     <div
@@ -33,22 +42,35 @@ const Header = () => {
                 HOME
               </li>
             </Link>
-            <Link to='/about'>
-              <li className='ml-10 cursor-pointer text-sm uppercase hover:border-b'>
-                About
-              </li>
-            </Link>
-            <Link to='/login'>
-              <li className='ml-10 cursor-pointer text-sm uppercase hover:border-b'>
-                Login
-              </li>
-            </Link>
-            <Link to='/register'>
-              <li className='ml-10 cursor-pointer text-sm uppercase hover:border-b'>
-                Register
-              </li>
-            </Link>
-          
+
+            {userInfo !== null ? (
+              <>
+                <li
+                  onClick={() => Logout()}
+                  className='ml-10 cursor-pointer text-sm uppercase hover:border-b'
+                >
+                  Logout
+                </li>
+                <Link to='/userProfile'>
+                  <li className='ml-10 cursor-pointer text-sm uppercase hover:border-b'>
+                    Profile
+                  </li>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to='/login'>
+                  <li className='ml-10 cursor-pointer text-sm uppercase hover:border-b'>
+                    Login
+                  </li>
+                </Link>
+                <Link to='/register'>
+                  <li className='ml-10 cursor-pointer text-sm uppercase hover:border-b'>
+                    Register
+                  </li>
+                </Link>
+              </>
+            )}
             <div className='relative mx-5 '>
               <Link to='/Cart' className='text-yellow-400  '>
                 <FaShoppingCart size={28} />
@@ -58,8 +80,18 @@ const Header = () => {
               </span>
             </div>
           </ul>
-          <div onClick={handelNav} className='md:hidden cursor-pointer'>
-            <AiOutlineMenu size={25} />
+          <div className='flex'>
+            <div className='relative mx-5 md:hidden'>
+              <Link to='/Cart' className='text-yellow-400  '>
+                <FaShoppingCart size={28} />
+              </Link>
+              <span className='bg-blue-300 left-5 top-[-10px] absolute rounded-full flex justify-center items-center w-4 p-2 h-4 '>
+                {NOrder}
+              </span>
+            </div>
+            <div onClick={handelNav} className='md:hidden cursor-pointer'>
+              <AiOutlineMenu size={25} />
+            </div>
           </div>
         </div>
       </div>
@@ -97,18 +129,37 @@ const Header = () => {
           <div>
             <ul className='uppercase'>
               <Link to='/'>
-                <li className='my-4 text-sm cursor-pointer'>Home</li>
+                <li
+                  onClick={() => handelNav()}
+                  className='my-4 text-sm cursor-pointer'
+                >
+                  Home
+                </li>
               </Link>
               <Link to='/about'>
-                <li className='my-4 text-sm cursor-pointer'>About</li>
+                <li
+                  onClick={() => handelNav()}
+                  className='my-4 text-sm cursor-pointer'
+                >
+                  About
+                </li>
               </Link>
               <Link to='/login'>
-                <li className='my-4 text-sm cursor-pointer'>Login</li>
+                <li
+                  onClick={() => handelNav()}
+                  className='my-4 text-sm cursor-pointer'
+                >
+                  Login
+                </li>
               </Link>
               <Link to='/register'>
-                <li className='my-4 text-sm cursor-pointer'>Register</li>
+                <li
+                  onClick={() => handelNav()}
+                  className='my-4 text-sm cursor-pointer'
+                >
+                  Register
+                </li>
               </Link>
-            
             </ul>
             <div className='pt-10'>
               <p className='uppercase tracking-wide text-blue-500'>
