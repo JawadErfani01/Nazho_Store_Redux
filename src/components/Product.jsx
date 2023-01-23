@@ -6,11 +6,13 @@ const Product = ({ item }) => {
   const { title, price, image, rating } = item
   const dispatch = useDispatch()
   const { change } = useSelector((state) => state.cart)
+  
   const handelAdd = (item) => {
     dispatch(getTotalPrice(item))
     dispatch(addToCart(item))
     toast.success(` ${item.title} added to your cart`)
   }
+
   return (
     <div className='product-card h-[440px] bg-red-300'>
       <img src={image} className='main-images h-[40%] w-[90%] ' alt={title} />

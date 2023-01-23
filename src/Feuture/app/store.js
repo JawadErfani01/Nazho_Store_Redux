@@ -4,6 +4,7 @@ import cartSlice from "../reducers/cartReducer/cartSlice"
 import paginationSlice from "../reducers/paginationReducer/paginationSlice"
 import { productsApi } from '../reducers/storeReducer/apiSlice'
 import  userSlice  from '../reducers/userReducer/userSlice'
+
 export const store = configureStore({
   reducer: {
     cart: cartSlice,

@@ -9,7 +9,10 @@ import SelectAmount from './SelectAmount'
 import SelectCategory from './SelectCategory'
 import { FaSearch } from 'react-icons/fa'
 import { products } from '../data/products'
+
+
 import { useGetAllProductsQuery } from '../Feuture/reducers/storeReducer/apiSlice'
+
 function Products() {
   const {
     data: allProductsData,

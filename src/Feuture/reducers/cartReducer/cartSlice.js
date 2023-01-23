@@ -28,6 +28,15 @@ const cartSlice = createSlice({
         window.localStorage.setItem("product",action.payload)
       }
     },
+
+    deleteItem: (state, action) => {
+      state.items = state.items.filter((item) => item.id !== action.payload.id)
+      state.total -= action.payload.price * action.payload.quantitiy
+      state.NOrder -= 1
+      toast(`You Delete ${action.payload.title} from cart`)
+    },
+
+    
     increment: (state, action) => {
       const index = state.items.findIndex(
         (item) => item.id === action.payload.id
@@ -49,12 +58,7 @@ const cartSlice = createSlice({
         toast.error(`You Decreased ${action.payload.title}`)
       }
     },
-    deleteItem: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id)
-      state.total -= action.payload.price * action.payload.quantitiy
-      state.NOrder -= 1
-      toast(`You Delete ${action.payload.title} from cart`)
-    },
+
     clearCart: (state, action) => {
       state.items = []
       state.total = 0
