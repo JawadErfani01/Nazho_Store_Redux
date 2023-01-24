@@ -190,13 +190,20 @@ const Header = () => {
               </p>
               <div className="flex items-center justify-between my-4 w-full md:w-[80%]">
                 <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-500">
-                  <FaLinkedinIn />
+                  <a href="https://github.com/JawadErfani01">
+                    <FaGithub />
+                  </a>
                 </div>
                 <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-500">
-                  <FaGithub />
+                  <a href="https://www.linkedin.com/in/jawad-erfani-610197195/">
+                    <FaLinkedinIn />
+                  </a>
                 </div>
+
                 <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-500">
-                  <FaTwitter />
+                  <a href="https://twitter.com/JawadErfani01">
+                    <FaTwitter />
+                  </a>
                 </div>
                 <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-500">
                   <AiOutlineMail />

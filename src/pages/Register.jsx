@@ -30,7 +30,7 @@ const Register = () => {
     <div className="flex flex-col justify-center  items-center mt-[25%] sm:mt-[13%]">
       <form
         onSubmit={handelSubmit}
-        className="p-8 pb-2 shadow-xl text-center rounded-lg bg-slate-800 w-[80%] sm:w-[50%] lg:w-[30%] "
+        className="p-8 pb-2 shadow-xl text-center rounded-lg bg-slate-800 w-[85%] sm:w-[50%] lg:w-[30%] "
       >
         <h1 className="my-5 text-3xl text-white bg-transparent italic  rounded-lg">
           Register Form
