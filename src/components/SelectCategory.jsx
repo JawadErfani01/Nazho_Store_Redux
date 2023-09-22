@@ -1,5 +1,7 @@
 const SelectCategory=()=>{
     const handelCategory = (e) => {
+        console.log("category not finishied")
+        
         console.log(e.target.value)
       }
     return(
